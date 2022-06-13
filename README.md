@@ -1,7 +1,7 @@
 # CSC 413 - Project Two - The Interpreter
 
-## Student Name  : Name here
+## Student Name  : Timmy Tram
 
-## Student ID    : ID here
+## Student ID    : 921102465
 
-## Student Email : Email here
+## Student Email : ttram2@mail.sfsu.edu
