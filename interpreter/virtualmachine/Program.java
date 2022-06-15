@@ -17,6 +17,10 @@ public class Program {
         return this.program.get(programCounter);
     }
 
+    public void add(ByteCode bc) {
+        program.add(bc);
+    }
+
     /**
      * This function should go through the program and resolve all addresses.
      * Currently all labels look like LABEL <<num>>>, these need to be converted into

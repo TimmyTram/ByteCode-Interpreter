@@ -1,7 +1,11 @@
 package interpreter.bytecode;
 
+import interpreter.virtualmachine.VirtualMachine;
+
+import java.util.List;
+
 public abstract class ByteCode {
 
-    // TODO: Create an abstraction of bytecode that all others will most likely use
-
+    public abstract void init(List<String> args);
+    public abstract void execute(VirtualMachine vm);
 }

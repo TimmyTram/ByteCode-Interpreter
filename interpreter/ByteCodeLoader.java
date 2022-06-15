@@ -1,10 +1,14 @@
 package interpreter;
 
+import interpreter.bytecode.ByteCode;
 import interpreter.virtualmachine.Program;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public final class ByteCodeLoader {
@@ -30,6 +34,34 @@ public final class ByteCodeLoader {
      *      Then add newly created and initialize ByteCode to the program
      */
     public Program loadCodes() {
-       return null;
+        Program program = new Program();
+        String[] items;
+        String className;
+        Class c;
+        ByteCode bc;
+        List<String> args = new ArrayList<>();
+
+        try {
+            while(this.byteSource.ready()) {
+                items = this.byteSource.readLine().split("\\s+");
+                className = CodeTable.getClassName(items[0]);
+                c = Class.forName("interpreter.bytecode." + className);
+                bc = (ByteCode) c.getDeclaredConstructor().newInstance();
+                for(int i = 1; i < items.length; i++) {
+                    args.add(items[i]);
+                }
+                bc.init(args);
+                program.add(bc);
+                args.clear();
+            }
+        } catch(IOException | ClassNotFoundException | NoSuchMethodException | InstantiationException |
+                IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+            System.out.println(e);
+            System.exit(-55);
+        }
+
+        program.resolveAddress();
+        return program;
     }
 }
