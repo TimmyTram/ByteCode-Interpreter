@@ -1,5 +1,7 @@
 package interpreter.virtualmachine;
 
+import interpreter.bytecode.ByteCode;
+
 import java.util.ArrayList;
 import java.util.List;
 

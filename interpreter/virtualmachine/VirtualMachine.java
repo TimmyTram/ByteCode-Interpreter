@@ -14,4 +14,8 @@ public class VirtualMachine {
         this.program = program;
     }
 
+    public void executeProgram() {
+
+    }
+
 }
