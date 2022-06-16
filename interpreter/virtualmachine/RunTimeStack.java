@@ -53,6 +53,20 @@ class RunTimeStack {
         rts.runTimeStack.forEach(val -> System.out.print(val + " "));
         System.out.println("\nUSING DUMP TO SEE FRAMES: ");
         rts.dump();
+
+        System.out.println("\n**** CLEARING RTS ****");
+        while(!rts.runTimeStack.isEmpty()) {
+            rts.pop();
+        }
+        rts.push(0);
+        rts.push(0);
+        rts.newFrameAt(0);
+        rts.push(1);
+        rts.push(2);
+        rts.push(3);
+        rts.push(4);
+        rts.push(5);
+        System.out.println("There should be 5 values in current frame: " + rts.getNumOfValuesInCurrFrame());
     }
 
     private int lastIndex() {
@@ -143,6 +157,13 @@ class RunTimeStack {
         while(this.runTimeStack.size() > newCurr) {
             this.pop();
         }
+    }
+
+    /**
+     * @return how many values in current frame
+     */
+    public int getNumOfValuesInCurrFrame() {
+        return this.runTimeStack.size() - this.framePointer.peek();
     }
 
 }

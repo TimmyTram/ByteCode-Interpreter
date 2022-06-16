@@ -29,4 +29,33 @@ public class VirtualMachine {
         }
     }
 
+    /*
+        -------------- ByteCode Requests to Virtual Machine Functions ----------------
+     */
+
+    /**
+     * Used by HaltCode
+     * Stop executeProgram() Loop
+     */
+    public void haltExecution() {
+        isRunning = false;
+    }
+
+    /**
+     * Used by PopCode
+     * removes the top of the runtime stack
+     * @return the value popped.
+     */
+    public int popRunTimeStack() {
+        return runTimeStack.pop();
+    }
+
+    /*
+        -------------- Helper Functions ----------------
+     */
+
+    public int getNumOfValuesInCurrFrame() {
+        return runTimeStack.getNumOfValuesInCurrFrame();
+    }
+
 }
