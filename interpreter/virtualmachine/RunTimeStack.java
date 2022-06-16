@@ -49,6 +49,10 @@ class RunTimeStack {
         rts.popFrame();
         System.out.print("\nAFTER POP FRAME: ");
         rts.framePointer.forEach(val -> System.out.print(val + " "));
+        System.out.print("\nVALUES STORED IN RUNTIME STACK IS: ");
+        rts.runTimeStack.forEach(val -> System.out.print(val + " "));
+        System.out.println("\nUSING DUMP TO SEE FRAMES: ");
+        rts.dump();
     }
 
     private int lastIndex() {
@@ -134,8 +138,9 @@ class RunTimeStack {
      * frame pointer value from the FramePointer Stack.
      */
     public void popFrame() {
-        int wasCurr = this.framePointer.pop();
-        while(this.runTimeStack.size() > wasCurr) {
+        this.framePointer.pop();
+        int newCurr = this.framePointer.peek();
+        while(this.runTimeStack.size() > newCurr) {
             this.pop();
         }
     }
