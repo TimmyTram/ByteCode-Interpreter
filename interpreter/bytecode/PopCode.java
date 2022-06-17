@@ -31,7 +31,7 @@ public class PopCode extends ByteCode {
         // we just get rid of all values in current frame and avoid operating across frame boundaries
         int validNumToRemove = Math.min(numToRemove, vm.getNumOfValuesInCurrFrame());
         for(int i = 0; i < validNumToRemove; i++) {
-            vm.popRunTimeStack();
+            vm.pop();
         }
     }
 
