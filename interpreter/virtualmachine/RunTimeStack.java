@@ -40,7 +40,7 @@ class RunTimeStack {
         rts.newFrameAt(0);
         rts.push(7);
         rts.push(8);
-        rts.newFrameAt(0);
+
         rts.dump();
         System.out.println(" | Expected: [1, 2, 3] [4, 5, 6] [7, 8]");
         System.out.println("**** TESTING popFrame() ****");
@@ -54,12 +54,13 @@ class RunTimeStack {
         System.out.println("\nUSING DUMP TO SEE FRAMES: ");
         rts.dump();
 
-        System.out.println("\n**** CLEARING RTS ****");
+        System.out.println("\n**************** CLEARING RTS ********************");
         while(!rts.runTimeStack.isEmpty()) {
-            rts.pop();
+            rts.popFrame();
         }
-        rts.push(0);
-        rts.push(0);
+        rts.newFrameAt(0);
+        rts.push(2020);
+        rts.push(2022);
         rts.newFrameAt(0);
         rts.push(1);
         rts.push(2);
@@ -67,6 +68,16 @@ class RunTimeStack {
         rts.push(4);
         rts.push(5);
         System.out.println("There should be 5 values in current frame: " + rts.getNumOfValuesInCurrFrame());
+        rts.dump();
+        System.out.print("\nBEFORE POP FRAME: ");
+        rts.framePointer.forEach(val -> System.out.print(val + " "));
+        rts.popFrame();
+        System.out.print("\nAFTER POP FRAME: ");
+        rts.framePointer.forEach(val -> System.out.print(val + " "));
+        System.out.print("\nVALUES STORED IN RUNTIME STACK IS: ");
+        rts.runTimeStack.forEach(val -> System.out.print(val + " "));
+        System.out.print("\nUSING DUMP TO SEE FRAMES: ");
+        rts.dump();
     }
 
     private int lastIndex() {
@@ -81,11 +92,13 @@ class RunTimeStack {
      */
     public void dump() {
         int lowerLimit = 0;
+        int upperLimit = 0;
         for(int i = 1; i < this.framePointer.size(); i++) {
-            int upperLimit = this.framePointer.get(i);
+            upperLimit = this.framePointer.get(i);
             System.out.print(this.runTimeStack.subList(lowerLimit, upperLimit) + " ");
             lowerLimit = upperLimit;
         }
+        System.out.print(this.runTimeStack.subList(upperLimit, this.runTimeStack.size()) + " ");
     }
 
     /**
@@ -152,8 +165,7 @@ class RunTimeStack {
      * frame pointer value from the FramePointer Stack.
      */
     public void popFrame() {
-        this.framePointer.pop();
-        int newCurr = this.framePointer.peek();
+        int newCurr = this.framePointer.pop();
         while(this.runTimeStack.size() > newCurr) {
             this.pop();
         }
