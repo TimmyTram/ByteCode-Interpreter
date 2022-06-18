@@ -60,8 +60,4 @@ public class FalseBranchCode extends ByteCode {
         this.location = location;
     }
 
-    public int getLocation() {
-        return this.location;
-    }
-
 }

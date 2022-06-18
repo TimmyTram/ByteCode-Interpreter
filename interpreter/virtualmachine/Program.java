@@ -44,6 +44,8 @@ public class Program {
         // look at stored label codes and find the 1 that has the matching label
 
         program.forEach(byteCode -> {
+            // Definitely could use an interface or another abstract class that each of these implements
+            // or extends, so we could just use one if statement and each class could share similar methods
             if(byteCode instanceof CallCode callCode) {
                 int location = program.indexOf(labelCodeMap.get(callCode.getLabel()));
                 callCode.setLocation(location);

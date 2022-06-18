@@ -33,7 +33,7 @@ public class VirtualMachine {
                 if(!(code instanceof DumpCode)) { // prevents us from printing DumpCode
                     System.out.println(code);
                 }
-                runTimeStack.dump();
+                runTimeStack.dump(); // dump() is void, so I can only print the RTS, but that means the formatting is weird
                 System.out.println();
             }
 

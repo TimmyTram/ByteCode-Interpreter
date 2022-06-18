@@ -60,10 +60,6 @@ public class CallCode extends ByteCode {
         this.location = location;
     }
 
-    public int getLocation() {
-        return this.location;
-    }
-
     /**
      * This main function is used to test the toString method of ReturnCode for dumping.
      * Note: This test will not show correct output (meaning it won't show values in frames)
