@@ -1,7 +1,6 @@
 package interpreter.virtualmachine;
 
-import interpreter.bytecode.ByteCode;
-import interpreter.bytecode.LabelCode;
+import interpreter.bytecode.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,9 +33,28 @@ public class Program {
     public void resolveAddress() {
         Map<String, LabelCode> labelCodeMap = new HashMap<>();
 
+        // 1st pass thru arrayList keeping track of all label codes and their labels
+        program.forEach(byteCode -> {
+                if(byteCode instanceof LabelCode labelCode) {
+                    labelCodeMap.put(labelCode.getLabel(), labelCode);
+                }
+        });
+
+        // 2nd pass thru arrayList look for call, goto, falsebranch codes and do the following:
+        // look at stored label codes and find the 1 that has the matching label
+
+        program.forEach(byteCode -> {
+            if(byteCode instanceof CallCode callCode) {
+                int location = program.indexOf(labelCodeMap.get(callCode.getLabel()));
+                callCode.setLocation(location);
+            } else if(byteCode instanceof GotoCode gotoCode) {
+                int location = program.indexOf(labelCodeMap.get(gotoCode.getLabel()));
+                gotoCode.setLocation(location);
+            } else if(byteCode instanceof FalseBranchCode falseBranchCode) {
+                int location = program.indexOf(labelCodeMap.get(falseBranchCode.getLabel()));
+                falseBranchCode.setLocation(location);
+            }
+        });
     }
-
-
-
 
 }

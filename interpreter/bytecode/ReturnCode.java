@@ -41,7 +41,11 @@ public class ReturnCode extends ByteCode {
 
     @Override
     public void execute(VirtualMachine vm) {
-        // TODO: Figure out execute
+        int value = vm.pop();
+        returnLocation = vm.popReturnAddressStack();
+        vm.popFrame();
+        vm.push(value);
+        vm.setProgramCounter(returnLocation);
     }
 
     @Override

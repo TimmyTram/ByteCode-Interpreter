@@ -133,8 +133,8 @@ class RunTimeStack {
      * @return the item just stored
      */
     public int store(int offsetFromFramePointer) {
-        int slotsAboveCurrentFrameMarker = this.framePointer.peek() + offsetFromFramePointer;
         int storedValue = this.pop();
+        int slotsAboveCurrentFrameMarker = this.framePointer.peek() + offsetFromFramePointer;
         return runTimeStack.set(slotsAboveCurrentFrameMarker, storedValue);
     }
 

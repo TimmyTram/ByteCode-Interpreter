@@ -24,6 +24,7 @@ import java.util.List;
 public class CallCode extends ByteCode {
 
     private String label;
+    private int location;
 
     @Override
     public void init(List<String> args) {
@@ -32,7 +33,8 @@ public class CallCode extends ByteCode {
 
     @Override
     public void execute(VirtualMachine vm) {
-        // TODO: Implement Virtual Machine RETURN ADDRESS STACK
+        vm.pushToReturnAddressStack();
+        vm.setProgramCounter(this.location);
     }
 
     @Override
@@ -44,6 +46,22 @@ public class CallCode extends ByteCode {
             base += " " + label + "\t\t" + functionName + "(" + ")";
         }
         return base;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getLabel() {
+        return this.label;
+    }
+
+    public void setLocation(int location) {
+        this.location = location;
+    }
+
+    public int getLocation() {
+        return this.location;
     }
 
     /**

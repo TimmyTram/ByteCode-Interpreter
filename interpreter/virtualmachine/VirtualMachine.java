@@ -1,6 +1,7 @@
 package interpreter.virtualmachine;
 
 import interpreter.bytecode.ByteCode;
+import interpreter.bytecode.DumpCode;
 
 import java.util.Stack;
 
@@ -27,6 +28,15 @@ public class VirtualMachine {
         while(isRunning) {
             ByteCode code = program.getCode(programCounter);
             code.execute(this);
+
+            if(isDumping) {
+                if(!(code instanceof DumpCode)) { // prevents us from printing DumpCode
+                    System.out.println(code);
+                }
+                runTimeStack.dump();
+                System.out.println();
+            }
+
             programCounter++;
         }
     }
@@ -85,7 +95,7 @@ public class VirtualMachine {
         -------------- Virtual Machine Requests to ReturnAddress Stack ----------------
      */
 
-    public void pushToReturnAddressStack(int programCounter) {
+    public void pushToReturnAddressStack() {
         returnAddress.push(programCounter);
     }
 

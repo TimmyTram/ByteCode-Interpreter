@@ -29,6 +29,8 @@ import java.util.List;
 public class FalseBranchCode extends ByteCode {
 
     private String label;
+    private int location;
+
     @Override
     public void init(List<String> args) {
         label = args.get(0);
@@ -37,7 +39,7 @@ public class FalseBranchCode extends ByteCode {
     @Override
     public void execute(VirtualMachine vm) {
         if(vm.pop() == 0) {
-            vm.setProgramCounter(Integer.parseInt(label));
+            vm.setProgramCounter(this.location);
         }
     }
 
@@ -45,4 +47,21 @@ public class FalseBranchCode extends ByteCode {
     public String toString() {
         return "FALSEBRANCH " + label;
     }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getLabel() {
+        return this.label;
+    }
+
+    public void setLocation(int location) {
+        this.location = location;
+    }
+
+    public int getLocation() {
+        return this.location;
+    }
+
 }

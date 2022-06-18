@@ -28,4 +28,13 @@ public class LabelCode extends ByteCode {
     public String toString() {
         return "LABEL";
     }
+
+    /**
+     * Used for Program : resolveAddress()
+     * @return the label stored in LabelCode
+     */
+    public String getLabel() {
+        return this.label;
+    }
+
 }

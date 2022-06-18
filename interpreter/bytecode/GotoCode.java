@@ -18,6 +18,8 @@ import java.util.List;
 public class GotoCode extends ByteCode {
 
     private String label;
+    private int location;
+
     @Override
     public void init(List<String> args) {
         label = args.get(0);
@@ -25,11 +27,28 @@ public class GotoCode extends ByteCode {
 
     @Override
     public void execute(VirtualMachine vm) {
-        // TODO: figure out how to jump
+        vm.setProgramCounter(this.location);
     }
 
     @Override
     public String toString() {
         return "GOTO " + label;
     }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLocation(int location) {
+        this.location = location;
+    }
+
+    public int getLocation() {
+        return this.location;
+    }
+
 }
