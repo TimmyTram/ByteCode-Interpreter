@@ -37,7 +37,7 @@ public class FalseBranchCode extends ByteCode {
     @Override
     public void execute(VirtualMachine vm) {
         if(vm.pop() == 0) {
-            // TODO: Figure out how to jump labels
+            vm.setProgramCounter(Integer.parseInt(label));
         }
     }
 

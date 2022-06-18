@@ -2,6 +2,7 @@ package interpreter.bytecode;
 
 import interpreter.virtualmachine.VirtualMachine;
 
+import java.util.ArrayList; // <-- This import only exists to test main method in this class
 import java.util.List;
 
 /**
@@ -29,6 +30,7 @@ import java.util.List;
 public class ReturnCode extends ByteCode {
 
     private String label;
+    private int returnLocation; // TODO: This will be used for execute() and toString()
 
     @Override
     public void init(List<String> args) {
@@ -44,7 +46,27 @@ public class ReturnCode extends ByteCode {
 
     @Override
     public String toString() {
-        // TODO: Figure out the toString()
-        return "RETURN " + label + " EXIT f : ";
+        String base = "RETURN";
+        if(label != null) {
+            String functionName = label.split("<")[0]; // f<<2>> split on first instance of '<' --> ['f', '<<2>>']
+            base += " " + label + "\t\tEXIT " + functionName + " : " + returnLocation;
+        }
+        return base;
     }
+
+    /**
+     * This main function is used to test the toString method of ReturnCode for dumping.
+     */
+    public static void main(String[] args) {
+        ReturnCode returnCode = new ReturnCode();
+        List<String> arguments = new ArrayList<>();
+        returnCode.init(arguments);
+        System.out.println("**** TESTING ReturnCode WITH 0 ARGUMENT **** ");
+        System.out.println(returnCode);
+        arguments.add("f<<2>>");
+        returnCode.init(arguments);
+        System.out.println("**** TESTING ReturnCode WITH 0 ARGUMENT **** ");
+        System.out.println(returnCode);
+    }
+
 }

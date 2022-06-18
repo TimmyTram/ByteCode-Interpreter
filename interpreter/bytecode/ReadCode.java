@@ -3,6 +3,7 @@ package interpreter.bytecode;
 import interpreter.virtualmachine.VirtualMachine;
 
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * The Read ByteCode is used to read user input from the keyboard. Only integers should be
@@ -22,8 +23,17 @@ public class ReadCode extends ByteCode {
 
     @Override
     public void execute(VirtualMachine vm) {
-        int userInput = vm.read();
-        vm.push(userInput);
+        Scanner scanner = new Scanner(System.in);
+        String userInput;
+        do { // keep prompting user until we get a string that is actually an integer
+            System.out.print("Please enter an integer : ");
+            userInput = scanner.nextLine();
+        } while(!userInput.matches("-?\\d+"));
+        // regex explanation:
+        // -? --> Could have a negative sign or not
+        // \\d+ --> One or more digits
+        vm.push(Integer.parseInt(userInput));
+        scanner.close();
     }
 
     @Override

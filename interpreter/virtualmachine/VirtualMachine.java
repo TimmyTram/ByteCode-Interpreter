@@ -2,7 +2,6 @@ package interpreter.virtualmachine;
 
 import interpreter.bytecode.ByteCode;
 
-import java.util.Scanner;
 import java.util.Stack;
 
 public class VirtualMachine {
@@ -36,28 +35,11 @@ public class VirtualMachine {
         -------------- ByteCode Requests to Virtual Machine ----------------
      */
 
-    /**
-     * Used by HaltCode
-     * Stop executeProgram() Loop
-     */
     public void haltExecution() {
         isRunning = false;
     }
     public void setDumping(boolean status) {
         this.isDumping = status;
-    }
-
-    public int read() {
-        Scanner scanner = new Scanner(System.in);
-        String input;
-        do { // keep prompting user until we get a string that is actually an integer
-            System.out.print("Please enter an integer : ");
-            input = scanner.nextLine();
-        } while(!input.matches("-?\\d+"));
-        // regex explanation:
-        // -? --> Could have a negative sign or not
-        // \\d+ --> One or more digits
-        return Integer.parseInt(input);
     }
 
     /*
@@ -95,10 +77,20 @@ public class VirtualMachine {
         return runTimeStack.getNumOfValuesInCurrFrame();
     }
 
+    public void setProgramCounter(int counter) {
+        this.programCounter = counter;
+    }
+
     /*
         -------------- Virtual Machine Requests to ReturnAddress Stack ----------------
      */
 
+    public void pushToReturnAddressStack(int programCounter) {
+        returnAddress.push(programCounter);
+    }
 
+    public int popReturnAddressStack() {
+        return returnAddress.pop();
+    }
 
 }
