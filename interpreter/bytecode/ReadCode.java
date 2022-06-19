@@ -28,10 +28,8 @@ public class ReadCode extends ByteCode {
         do { // keep prompting user until we get a string that is actually an integer
             System.out.print("Please enter an integer : ");
             userInput = scanner.nextLine();
-        } while(!userInput.matches("-?\\d+"));
-        // regex explanation:
-        // -? --> Could have a negative sign or not
-        // \\d+ --> One or more digits
+        } while(!userInput.matches("\\d+"));
+        // regex explanation: \\d+ --> One or more digits (non-negative) since negative fib and factorial isn't needed
         vm.push(Integer.parseInt(userInput));
         scanner.close();
     }

@@ -30,7 +30,7 @@ import java.util.List;
 public class ReturnCode extends ByteCode {
 
     private String label;
-    private int returnLocation; // TODO: This will be used for execute() and toString()
+    private int returnLocation;
 
     @Override
     public void init(List<String> args) {

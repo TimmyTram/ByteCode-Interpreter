@@ -91,6 +91,10 @@ public class VirtualMachine {
         this.programCounter = counter;
     }
 
+    public String getArgumentsFromFrame(int limit) {
+        return runTimeStack.getArgumentsFromFrame(limit);
+    }
+
     /*
         -------------- Virtual Machine Requests to ReturnAddress Stack ----------------
      */

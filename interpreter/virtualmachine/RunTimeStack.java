@@ -78,6 +78,22 @@ class RunTimeStack {
         rts.runTimeStack.forEach(val -> System.out.print(val + " "));
         System.out.print("\nUSING DUMP TO SEE FRAMES: ");
         rts.dump();
+
+        System.out.println("\n**************** CLEARING RTS ********************");
+        while(!rts.runTimeStack.isEmpty()) {
+            rts.popFrame();
+        }
+
+        System.out.println("**** TESTING getArgumentsFromFrame() for CallCode ****");
+        rts.newFrameAt(0);
+        rts.push(0);
+        rts.push(1);
+        rts.push(2);
+        rts.newFrameAt(0);
+        rts.push(3);
+        rts.push(4);
+        rts.push(5);
+        System.out.println(rts.getArgumentsFromFrame(3));
     }
 
     private int lastIndex() {
@@ -172,10 +188,36 @@ class RunTimeStack {
     }
 
     /**
-     * @return how many values in current frame
+     * A helper function that gets us the number of values in the current frame using frame pointer and run time stack
+     * @return the number of values in the current frame
      */
     public int getNumOfValuesInCurrFrame() {
         return this.runTimeStack.size() - this.framePointer.peek();
+    }
+
+    /**
+     * A helper function that can be used to get the arguments in a certain frame given by a lowerLimit Integer
+     * @param lowerLimit the minimum frame we want to slice from
+     * @return the arguments stored in the runtime stack
+     */
+    public String getArgumentsFromFrame(int lowerLimit) {
+        int upperLimit = this.runTimeStack.size();
+        if(upperLimit <= 1) { // in order to avoid slicing errors
+            String result = this.runTimeStack.toString();
+            result = result.substring(1, result.length() - 1);
+            return result;
+        }
+
+        for (Integer integer : this.framePointer) {
+            if (lowerLimit < integer) {
+                upperLimit = integer;
+                break;
+                // gotta break here because we don't want to reset the value of upperLimit to the max value of frame pointer
+            }
+        }
+        String result = this.runTimeStack.subList(lowerLimit, upperLimit).toString();
+        result = result.substring(1, result.length() - 1); // this is in order to get rid of '[' and ']' characters
+        return result;
     }
 
 }

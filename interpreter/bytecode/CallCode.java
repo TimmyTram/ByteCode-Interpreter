@@ -25,6 +25,7 @@ public class CallCode extends ByteCode {
 
     private String label;
     private int location;
+    private String arguments;
 
     @Override
     public void init(List<String> args) {
@@ -33,17 +34,21 @@ public class CallCode extends ByteCode {
 
     @Override
     public void execute(VirtualMachine vm) {
+        String functionLimit = label.replaceAll("\\D", ""); // example: Get the digit from f<<2>> which is 2
+        if("".equals(functionLimit)) { // it is possible that CallCode's label is not initialized yet
+            functionLimit = "0"; // so we set it equal to 0 in order to avoid slicing errors
+        }
+        arguments = vm.getArgumentsFromFrame(Integer.parseInt(functionLimit));
         vm.pushToReturnAddressStack();
         vm.setProgramCounter(this.location);
     }
 
     @Override
     public String toString() {
-        // TODO: Figure out how to get the arguments from RTS
         String base = "CALL";
         if(label != null) {
             String functionName = label.split("<")[0]; // f<<2>> split on first instance of '<' --> ['f', '<<2>>']
-            base += " " + label + "\t\t" + functionName + "(" + ")";
+            base += " " + label + "\t\t" + functionName + "(" + arguments + ")";
         }
         return base;
     }

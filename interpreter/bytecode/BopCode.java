@@ -43,6 +43,7 @@ public class BopCode extends ByteCode {
         int operand2 = vm.pop();
         int operand1 = vm.pop();
         // since we can only push ints onto the RunTimeStack 1 will represent true and 0 represents false
+        // used a switch statement + ternary's to make this readable vs nested if elses
         switch(operator) { // This Switch statement requires Java 14
             case "+" -> vm.push(operand1 + operand2);
             case "-" -> vm.push(operand1 - operand2);
