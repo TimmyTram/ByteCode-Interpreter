@@ -22,7 +22,7 @@ class RunTimeStack {
      */
     public static void main(String[] args) {
         RunTimeStack rts = new RunTimeStack();
-        System.out.println("**** TESTING push() and peek() ****");
+        System.out.println("**** TESTING pushRunTimeStack() and peekRunTimeStack() ****");
         rts.push(987654321);
         System.out.println("Actual Result: " + rts.peek() + " | Expected: 987654321");
         System.out.println("**** TESTING pop() ****");

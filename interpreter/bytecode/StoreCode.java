@@ -41,7 +41,7 @@ public class StoreCode extends ByteCode {
     @Override
     public void execute(VirtualMachine vm) {
         vm.store(offset);
-        value = vm.peek();
+        value = vm.peekRunTimeStack();
     }
 
     @Override

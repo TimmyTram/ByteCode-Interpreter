@@ -17,7 +17,7 @@ import java.util.List;
  * from.
  * – The second argument, if present, is the identifier (variable) the value belongs to.
  * This we be used for dumping.
- * • Load must copy the value at the offset in the current and push it to the top of the
+ * • Load must copy the value at the offset in the current and pushRunTimeStack it to the top of the
  * stack.
  * • Load must not remove any values from the runtime stack.
  * • Load cannot operate across frame boundaries.

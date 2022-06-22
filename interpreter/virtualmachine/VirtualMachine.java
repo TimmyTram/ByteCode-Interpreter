@@ -55,15 +55,15 @@ public class VirtualMachine {
     /*
         -------------- Virtual Machine Requests to RunTimeStack ----------------
      */
-    public int peek() {
+    public int peekRunTimeStack() {
         return runTimeStack.peek();
     }
 
-    public int pop() {
+    public int popRunTimeStack() {
         return runTimeStack.pop();
     }
 
-    public int push(int value) {
+    public int pushRunTimeStack(int value) {
         return runTimeStack.push(value);
     }
 

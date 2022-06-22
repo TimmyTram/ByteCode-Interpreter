@@ -38,7 +38,7 @@ public class FalseBranchCode extends ByteCode {
 
     @Override
     public void execute(VirtualMachine vm) {
-        if(vm.pop() == 0) {
+        if(vm.popRunTimeStack() == 0) {
             vm.setProgramCounter(this.location);
         }
     }

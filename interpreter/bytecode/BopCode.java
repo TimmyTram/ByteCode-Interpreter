@@ -12,7 +12,7 @@ import java.util.List;
  * order but the popped in the reverse order.
  *
  * • Bop must pop 2 values from the runtime stack.
- * • Bop must push 1 value, the result, back to the top of the runtime stack.
+ * • Bop must pushRunTimeStack 1 value, the result, back to the top of the runtime stack.
  * • Bop must implement the following binary operations:
  * Addition: +
  * Subtraction: −
@@ -40,23 +40,23 @@ public class BopCode extends ByteCode {
 
     @Override
     public void execute(VirtualMachine vm) {
-        int operand2 = vm.pop();
-        int operand1 = vm.pop();
-        // since we can only push ints onto the RunTimeStack 1 will represent true and 0 represents false
+        int operand2 = vm.popRunTimeStack();
+        int operand1 = vm.popRunTimeStack();
+        // since we can only pushRunTimeStack ints onto the RunTimeStack 1 will represent true and 0 represents false
         // used a switch statement + ternary's to make this readable vs nested if elses
         switch(operator) { // This Switch statement requires Java 14
-            case "+" -> vm.push(operand1 + operand2);
-            case "-" -> vm.push(operand1 - operand2);
-            case "/" -> vm.push(operand1 / operand2);
-            case "*" -> vm.push(operand1 * operand2);
-            case "==" -> vm.push((operand1 == operand2) ? 1 : 0);
-            case "!=" -> vm.push((operand1 != operand2) ? 1 : 0);
-            case "<=" -> vm.push((operand1 <= operand2) ? 1 : 0);
-            case ">" -> vm.push((operand1 > operand2) ? 1 : 0);
-            case ">=" -> vm.push((operand1 >= operand2) ? 1 : 0);
-            case "<" -> vm.push((operand1 < operand2) ? 1 : 0);
-            case "|" -> vm.push((operand1 == 1 || operand2 == 1) ? 1 : 0);
-            case "&" -> vm.push((operand1 == 1 && operand2 == 1) ? 1 : 0);
+            case "+" -> vm.pushRunTimeStack(operand1 + operand2);
+            case "-" -> vm.pushRunTimeStack(operand1 - operand2);
+            case "/" -> vm.pushRunTimeStack(operand1 / operand2);
+            case "*" -> vm.pushRunTimeStack(operand1 * operand2);
+            case "==" -> vm.pushRunTimeStack((operand1 == operand2) ? 1 : 0);
+            case "!=" -> vm.pushRunTimeStack((operand1 != operand2) ? 1 : 0);
+            case "<=" -> vm.pushRunTimeStack((operand1 <= operand2) ? 1 : 0);
+            case ">" -> vm.pushRunTimeStack((operand1 > operand2) ? 1 : 0);
+            case ">=" -> vm.pushRunTimeStack((operand1 >= operand2) ? 1 : 0);
+            case "<" -> vm.pushRunTimeStack((operand1 < operand2) ? 1 : 0);
+            case "|" -> vm.pushRunTimeStack((operand1 == 1 || operand2 == 1) ? 1 : 0);
+            case "&" -> vm.pushRunTimeStack((operand1 == 1 && operand2 == 1) ? 1 : 0);
         }
     }
 
