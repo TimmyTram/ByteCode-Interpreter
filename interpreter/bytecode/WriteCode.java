@@ -14,7 +14,7 @@ import java.util.List;
  * value.
  * • If dumping is on, Simply print ”WRITE” to the console.
  */
-public class WriteCode extends ByteCode {
+public class WriteCode extends ByteCode implements Dumpable {
     @Override
     public void init(List<String> args) {}
 

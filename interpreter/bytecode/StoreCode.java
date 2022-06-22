@@ -24,7 +24,7 @@ import java.util.List;
  * • If dump is on, Store needs to be dumped according the specifications given in the
  * Dumping Formats section.
  */
-public class StoreCode extends ByteCode {
+public class StoreCode extends ByteCode implements Dumpable {
 
     private int offset;
     private String id;

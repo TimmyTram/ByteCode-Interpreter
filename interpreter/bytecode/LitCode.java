@@ -16,7 +16,7 @@ import java.util.List;
  * • If dumping is on, Lit ByteCode needs to be dumped according the specifications in the
  * Dumping formats section.
  */
-public class LitCode extends ByteCode {
+public class LitCode extends ByteCode implements Dumpable {
 
     private int value;
     private String id;

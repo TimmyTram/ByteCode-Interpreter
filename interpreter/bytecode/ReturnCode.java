@@ -27,7 +27,7 @@ import java.util.List;
  * • If dumping is on, the Return ByteCode needs to be dumped according the specifications
  * in the Dumping formats section.
  */
-public class ReturnCode extends ByteCode {
+public class ReturnCode extends ByteCode implements Dumpable {
 
     private String label;
     private int returnLocation;

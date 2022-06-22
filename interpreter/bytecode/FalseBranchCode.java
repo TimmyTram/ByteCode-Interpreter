@@ -26,7 +26,7 @@ import java.util.List;
  * • If dump is on, FalseBranch ByteCode is required to be dumped. Examples are given
  * later in this document.
  */
-public class FalseBranchCode extends ByteCode {
+public class FalseBranchCode extends ByteCode implements Dumpable {
 
     private String label;
     private int location;

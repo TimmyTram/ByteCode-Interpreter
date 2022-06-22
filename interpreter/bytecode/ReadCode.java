@@ -17,7 +17,7 @@ import java.util.Scanner;
  * • Push the validated integer to the VirtualMachine’s RunTimeStack.
  * • If dumping is on, Simply print ”READ” to the console.
  */
-public class ReadCode extends ByteCode {
+public class ReadCode extends ByteCode implements Dumpable {
     @Override
     public void init(List<String> args) {}
 

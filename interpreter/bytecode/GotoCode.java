@@ -15,7 +15,7 @@ import java.util.List;
  * on this later.
  * • If dump is on, Goto is required to be dumped. Examples are given in this document
  */
-public class GotoCode extends ByteCode {
+public class GotoCode extends ByteCode implements Dumpable {
 
     private String label;
     private int location;

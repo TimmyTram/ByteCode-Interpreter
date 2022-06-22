@@ -2,6 +2,7 @@ package interpreter.virtualmachine;
 
 import interpreter.bytecode.ByteCode;
 import interpreter.bytecode.DumpCode;
+import interpreter.bytecode.Dumpable;
 
 import java.util.Stack;
 
@@ -30,7 +31,7 @@ public class VirtualMachine {
             code.execute(this);
 
             if(isDumping) {
-                if(!(code instanceof DumpCode)) { // prevents us from printing DumpCode
+                if(code instanceof Dumpable) { // if it implements the Dumpable interface, then we can dump / use the toString() method
                     System.out.println(code);
                 }
                 runTimeStack.dump(); // dump() is void, so I can only print the RTS, but that means the formatting is weird

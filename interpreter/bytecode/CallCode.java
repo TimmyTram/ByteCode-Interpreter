@@ -21,7 +21,7 @@ import java.util.List;
  * • If dumping is on, the Call ByteCode needs to be dumped according the specifications
  * in the Dumping formats section
  */
-public class CallCode extends ByteCode {
+public class CallCode extends ByteCode implements Dumpable {
 
     private String label;
     private int location;

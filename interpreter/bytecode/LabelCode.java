@@ -12,7 +12,7 @@ import java.util.List;
  * • Label takes one argument, a label which is used to denote a location in the program.
  * • Dumping Label ByteCodes is optional
  */
-public class LabelCode extends ByteCode {
+public class LabelCode extends ByteCode implements Dumpable {
 
     private String label;
 

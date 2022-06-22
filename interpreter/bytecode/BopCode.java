@@ -29,7 +29,7 @@ import java.util.List;
  * • If dump is on, the Bop ByteCode is required to be dumped. Examples are given in
  * this document.
  */
-public class BopCode extends ByteCode {
+public class BopCode extends ByteCode implements Dumpable {
 
     private String operator;
 

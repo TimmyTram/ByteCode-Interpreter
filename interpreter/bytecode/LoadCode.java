@@ -26,7 +26,7 @@ import java.util.List;
  * • If dump is on, Load needs to be dumped according the specifications given in the
  * Dumping Formats section.
  */
-public class LoadCode extends ByteCode {
+public class LoadCode extends ByteCode implements Dumpable {
 
     private int offset;
     private String id;

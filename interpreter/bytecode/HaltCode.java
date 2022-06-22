@@ -15,7 +15,7 @@ import java.util.List;
  * • Halt ByteCodes are not be Dumped.
  * • Halt cannot execute a system.exit function call.
  */
-public class HaltCode extends ByteCode {
+public class HaltCode extends ByteCode implements Dumpable {
     @Override
     public void init(List<String> args) {}
 

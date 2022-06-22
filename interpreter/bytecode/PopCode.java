@@ -17,7 +17,7 @@ import java.util.List;
  * • Pop is not allowed operate across frame boundaries.
  * • If dump is on, Pop is required to be dumped. Examples are given in this document.
  */
-public class PopCode extends ByteCode {
+public class PopCode extends ByteCode implements Dumpable {
 
     private int numToRemove;
     @Override

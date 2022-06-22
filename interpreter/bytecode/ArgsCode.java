@@ -20,7 +20,7 @@ import java.util.List;
  * • If dump is on, the Args ByteCode is required to be dumped. Examples are given in
  * this document.
  */
-public class ArgsCode extends ByteCode {
+public class ArgsCode extends ByteCode implements Dumpable {
 
     private int numOfArgs;
 
