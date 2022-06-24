@@ -26,38 +26,36 @@ import java.util.List;
  * • If dump is on, FalseBranch ByteCode is required to be dumped. Examples are given
  * later in this document.
  */
-public class FalseBranchCode extends ByteCode implements Dumpable {
+public class FalseBranchCode extends BranchCode implements Dumpable {
 
-    private String label;
-    private int location;
 
     @Override
     public void init(List<String> args) {
-        label = args.get(0);
+        super.setLabel(args.get(0));
     }
 
     @Override
     public void execute(VirtualMachine vm) {
         if(vm.popRunTimeStack() == 0) {
-            vm.setProgramCounter(this.location);
+            vm.setProgramCounter(super.getAddress());
         }
     }
 
     @Override
     public String toString() {
-        return "FALSEBRANCH " + label;
+        return "FALSEBRANCH " + super.getLabel();
     }
 
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
-    public String getLabel() {
-        return this.label;
-    }
-
-    public void setLocation(int location) {
-        this.location = location;
-    }
+//    public void setLabel(String label) {
+//        this.label = label;
+//    }
+//
+//    public String getLabel() {
+//        return this.label;
+//    }
+//
+//    public void setLocation(int location) {
+//        this.location = location;
+//    }
 
 }

@@ -42,18 +42,11 @@ public class Program {
 
         // 2nd pass thru arrayList look for call, goto, falsebranch codes and do the following:
         // look at stored label codes and find the 1 that has the matching label
-
-        for(ByteCode byteCode : program) {// Definitely could use an interface or another abstract class that each of these implements
-            // or extends, so we could just use one if statement and each class could share similar methods
-            if (byteCode instanceof CallCode callCode) {
-                int location = program.indexOf(labelCodeMap.get(callCode.getLabel()));
-                callCode.setLocation(location);
-            } else if (byteCode instanceof GotoCode gotoCode) {
-                int location = program.indexOf(labelCodeMap.get(gotoCode.getLabel()));
-                gotoCode.setLocation(location);
-            } else if (byteCode instanceof FalseBranchCode falseBranchCode) {
-                int location = program.indexOf(labelCodeMap.get(falseBranchCode.getLabel()));
-                falseBranchCode.setLocation(location);
+        // then we see the index that label is stored in the array which is equal to our address we need to jump to.
+        for(ByteCode byteCode : program) {
+            if(byteCode instanceof BranchCode branchCode) {
+                int address = program.indexOf(labelCodeMap.get(branchCode.getLabel()));
+                branchCode.setAddress(address);
             }
         }
     }

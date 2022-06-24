@@ -15,36 +15,21 @@ import java.util.List;
  * on this later.
  * • If dump is on, Goto is required to be dumped. Examples are given in this document
  */
-public class GotoCode extends ByteCode implements Dumpable {
-
-    private String label;
-    private int location;
+public class GotoCode extends BranchCode implements Dumpable {
 
     @Override
     public void init(List<String> args) {
-        label = args.get(0);
+        super.setLabel(args.get(0));
     }
 
     @Override
     public void execute(VirtualMachine vm) {
-        vm.setProgramCounter(this.location);
+        vm.setProgramCounter(super.getAddress());
     }
 
     @Override
     public String toString() {
-        return "GOTO " + label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLocation(int location) {
-        this.location = location;
+        return "GOTO " + super.getLabel();
     }
 
 }
