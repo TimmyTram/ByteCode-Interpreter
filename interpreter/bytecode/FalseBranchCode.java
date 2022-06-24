@@ -28,7 +28,6 @@ import java.util.List;
  */
 public class FalseBranchCode extends BranchCode implements Dumpable {
 
-
     @Override
     public void init(List<String> args) {
         super.setLabel(args.get(0));
@@ -45,17 +44,5 @@ public class FalseBranchCode extends BranchCode implements Dumpable {
     public String toString() {
         return "FALSEBRANCH " + super.getLabel();
     }
-
-//    public void setLabel(String label) {
-//        this.label = label;
-//    }
-//
-//    public String getLabel() {
-//        return this.label;
-//    }
-//
-//    public void setLocation(int location) {
-//        this.location = location;
-//    }
 
 }

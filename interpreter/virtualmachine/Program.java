@@ -31,24 +31,27 @@ public class Program {
      * **** METHOD SIGNATURE CANNOT BE CHANGED *****
      */
     public void resolveAddress() {
-        Map<String, LabelCode> labelCodeMap = new HashMap<>();
+        Map<String, Integer> labelCodeMap = new HashMap<>();
 
         // 1st pass thru arrayList keeping track of all label codes and their labels
-        for(ByteCode code : program) {
-            if (code instanceof LabelCode labelCode) {
-                labelCodeMap.put(labelCode.getLabel(), labelCode);
+
+        for(int i = 0; i < program.size(); i++) {
+            ByteCode byteCode = program.get(i);
+            if(byteCode instanceof LabelCode labelCode) {
+                labelCodeMap.put(labelCode.getLabel(), i);
             }
         }
 
-        // 2nd pass thru arrayList look for call, goto, falsebranch codes and do the following:
+        // 2nd pass thru arrayList look for BranchCodes:
         // look at stored label codes and find the 1 that has the matching label
         // then we see the index that label is stored in the array which is equal to our address we need to jump to.
-        for(ByteCode byteCode : program) {
-            if(byteCode instanceof BranchCode branchCode) {
-                int address = program.indexOf(labelCodeMap.get(branchCode.getLabel()));
+        for (ByteCode byteCode : program) {
+            if (byteCode instanceof BranchCode branchCode) {
+                int address = labelCodeMap.get(branchCode.getLabel());
                 branchCode.setAddress(address);
             }
         }
+
     }
 
 }
