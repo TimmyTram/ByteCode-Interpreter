@@ -200,9 +200,10 @@ class RunTimeStack {
      * @return the arguments stored in the runtime stack
      */
     public String getArgumentsFromFrame() {
-        int limit = this.framePointer.peek();
-        String result = this.runTimeStack.subList(limit, this.runTimeStack.size()).toString();
-        result = result.substring(1, result.length() - 1);
+        int lowerLimit = this.framePointer.peek();
+        int upperLimit = this.runTimeStack.size();
+        String result = this.runTimeStack.subList(lowerLimit, upperLimit).toString();
+        result = result.substring(1, result.length() - 1); // this is in order to get rid of '[' and ']' characters
         return result;
     }
 

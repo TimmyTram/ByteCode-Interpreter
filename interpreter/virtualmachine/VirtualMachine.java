@@ -30,12 +30,10 @@ public class VirtualMachine {
             ByteCode code = program.getCode(programCounter);
             code.execute(this);
 
-            if(isDumping) {
-                if(code instanceof Dumpable) { // if it implements the Dumpable interface, then we can dump / use the toString() method
-                    System.out.println(code);
-                    runTimeStack.dump();
-                    System.out.println();
-                }
+            if(isDumping && code instanceof Dumpable) {
+                System.out.println(code);
+                runTimeStack.dump();
+                System.out.println();
             }
 
             programCounter++;
