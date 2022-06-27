@@ -37,6 +37,6 @@ public class PopCode extends ByteCode implements Dumpable {
 
     @Override
     public String toString() {
-        return "POP " + numToRemove + "\n";
+        return "POP " + numToRemove;
     }
 }

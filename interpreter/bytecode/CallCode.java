@@ -31,12 +31,7 @@ public class CallCode extends BranchCode implements Dumpable {
 
     @Override
     public void execute(VirtualMachine vm) {
-        String label = super.getLabel();
-        String functionLimit = label.replaceAll("\\D", ""); // example: Get the digit from f<<2>> which is 2
-        if("".equals(functionLimit)) { // it is possible that CallCode's label is not initialized yet
-            functionLimit = "0"; // so we set it equal to 0 in order to avoid slicing errors
-        }
-        arguments = vm.getArgumentsFromFrame(Integer.parseInt(functionLimit));
+        arguments = vm.getArgumentsFromFrame();
         vm.pushToReturnAddressStack();
         vm.setProgramCounter(super.getAddress());
     }

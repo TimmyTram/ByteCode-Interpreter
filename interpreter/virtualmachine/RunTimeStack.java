@@ -93,7 +93,7 @@ class RunTimeStack {
         rts.push(3);
         rts.push(4);
         rts.push(5);
-        System.out.println(rts.getArgumentsFromFrame(3));
+        System.out.println(rts.getArgumentsFromFrame());
     }
 
     private int lastIndex() {
@@ -196,27 +196,13 @@ class RunTimeStack {
     }
 
     /**
-     * A helper function that can be used to get the arguments in a certain frame given by a lowerLimit Integer
-     * @param lowerLimit the minimum frame we want to slice from
+     * A helper function that can be used to get the arguments in the top most frame
      * @return the arguments stored in the runtime stack
      */
-    public String getArgumentsFromFrame(int lowerLimit) {
-        int upperLimit = this.runTimeStack.size();
-        if(upperLimit <= 1) { // in order to avoid slicing errors
-            String result = this.runTimeStack.toString();
-            result = result.substring(1, result.length() - 1);
-            return result;
-        }
-
-        for (Integer integer : this.framePointer) {
-            if (lowerLimit < integer) {
-                upperLimit = integer;
-                break;
-                // gotta break here because we don't want to reset the value of upperLimit to the max value of frame pointer
-            }
-        }
-        String result = this.runTimeStack.subList(lowerLimit, upperLimit).toString();
-        result = result.substring(1, result.length() - 1); // this is in order to get rid of '[' and ']' characters
+    public String getArgumentsFromFrame() {
+        int limit = this.framePointer.peek();
+        String result = this.runTimeStack.subList(limit, this.runTimeStack.size()).toString();
+        result = result.substring(1, result.length() - 1);
         return result;
     }
 

@@ -31,6 +31,7 @@ public class ReturnCode extends ByteCode implements Dumpable {
 
     private String label;
     private int returnLocation;
+    private int value;
 
     @Override
     public void init(List<String> args) {
@@ -41,7 +42,7 @@ public class ReturnCode extends ByteCode implements Dumpable {
 
     @Override
     public void execute(VirtualMachine vm) {
-        int value = vm.popRunTimeStack();
+        value = vm.popRunTimeStack();
         returnLocation = vm.popReturnAddressStack();
         vm.popFrame();
         vm.pushRunTimeStack(value);
@@ -53,7 +54,7 @@ public class ReturnCode extends ByteCode implements Dumpable {
         String base = "RETURN";
         if(label != null) {
             String functionName = label.split("<")[0]; // f<<2>> split on first instance of '<' --> ['f', '<<2>>']
-            base += " " + label + "\t\tEXIT " + functionName + " : " + returnLocation;
+            base += " " + label + "\t\tEXIT " + functionName + " : " + value;
         }
         return base;
     }

@@ -33,9 +33,9 @@ public class VirtualMachine {
             if(isDumping) {
                 if(code instanceof Dumpable) { // if it implements the Dumpable interface, then we can dump / use the toString() method
                     System.out.println(code);
+                    runTimeStack.dump();
+                    System.out.println();
                 }
-                runTimeStack.dump(); // dump() is void, so I can only print the RTS, but that means the formatting is weird
-                System.out.println();
             }
 
             programCounter++;
@@ -92,8 +92,8 @@ public class VirtualMachine {
         this.programCounter = counter;
     }
 
-    public String getArgumentsFromFrame(int limit) {
-        return runTimeStack.getArgumentsFromFrame(limit);
+    public String getArgumentsFromFrame() {
+        return runTimeStack.getArgumentsFromFrame();
     }
 
     /*
