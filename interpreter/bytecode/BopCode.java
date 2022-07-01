@@ -4,31 +4,6 @@ import interpreter.virtualmachine.VirtualMachine;
 
 import java.util.List;
 
-/**
- * The Bop ByteCode is used to implement binary operations for the Interpreter Project. The
- * Bop ByteCode will need to remove 2 values from the runtime stack and operate on them
- * according to an operation. The result needs to be pushed back to the top of the stack. Be
- * careful, the order of the operands matter. HINT: operands will be pushed in the correct
- * order but the popped in the reverse order.
- *
- * • Bop must pop 2 values from the runtime stack.
- * • Bop must pushRunTimeStack 1 value, the result, back to the top of the runtime stack.
- * • Bop must implement the following binary operations:
- * Addition: +
- * Subtraction: −
- * Division: /
- * Multiplication: ∗
- * Equality: ==
- * Not-Equal To: ! =
- * Less-Than Equal To: <=
- * Greater Than: >
- * Greater Than Equal To: >=
- * Less Than: <
- * Logical OR: |
- * Logical AND: &
- * • If dump is on, the Bop ByteCode is required to be dumped. Examples are given in
- * this document.
- */
 public class BopCode extends ByteCode implements Dumpable {
 
     private String operator;
@@ -42,9 +17,7 @@ public class BopCode extends ByteCode implements Dumpable {
     public void execute(VirtualMachine vm) {
         int operand2 = vm.popRunTimeStack();
         int operand1 = vm.popRunTimeStack();
-        // since we can only pushRunTimeStack ints onto the RunTimeStack 1 will represent true and 0 represents false
-        // used a switch statement + ternary's to make this readable vs nested if elses
-        switch(operator) { // This Switch statement requires Java 14
+        switch(operator) {
             case "+" -> vm.pushRunTimeStack(operand1 + operand2);
             case "-" -> vm.pushRunTimeStack(operand1 - operand2);
             case "/" -> vm.pushRunTimeStack(operand1 / operand2);

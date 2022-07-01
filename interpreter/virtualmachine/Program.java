@@ -33,8 +33,6 @@ public class Program {
     public void resolveAddress() {
         Map<String, Integer> labelCodeMap = new HashMap<>();
 
-        // 1st pass thru arrayList keeping track of all label codes and their labels
-
         for(int i = 0; i < program.size(); i++) {
             ByteCode byteCode = program.get(i);
             if(byteCode instanceof LabelCode labelCode) {
@@ -42,9 +40,6 @@ public class Program {
             }
         }
 
-        // 2nd pass thru arrayList look for BranchCodes:
-        // look at stored label codes and find the 1 that has the matching label
-        // then we see the index that label is stored in the array which is equal to our address we need to jump to.
         for (ByteCode byteCode : program) {
             if (byteCode instanceof BranchCode branchCode) {
                 int address = labelCodeMap.get(branchCode.getLabel());
